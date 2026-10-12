@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terrava — klub inwestorów w grunty i nieruchomości</title>
+<meta name="description" content="Terrava to zamknięty klub zamożnych inwestorów z całej Polski. Weryfikujemy grunty i projekty deweloperskie i prezentujemy je tylko członkom.">
+<meta property="og:title" content="Terrava — klub inwestorów">
+<meta property="og:description" content="Grunt to dobra inwestycja. Zamknięty klub inwestorów w grunty i projekty deweloperskie.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://terrava.pl/">
+<meta name="theme-color" content="#13253B">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://terrava.pl/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: ciemna, kadastralna scena otwierająca → jasne, rytmiczne sekcje na siatce 12 kolumn; motyw podziału działki w znakach i liniach */
+:root{
+  --navy:#13253B; --navy-2:#1B3149; --navy-3:#2A4361;
+  --copper:#B8703F; --copper-text:#8E5128; --copper-light:#C98552;
+  --chalk:#F8F7F4; --paper:#FFFFFF; --sand:#EEEDE8; --line:#D3D1C9;
+  --ink:#13253B; --muted:#5A6472; --on-dark:#F8F7F4; --on-dark-muted:#B9C0C9;
+  --bg:var(--chalk); --surface:var(--paper); --surface-2:var(--sand);
+  --font-display:"Syne", "Arial Black", system-ui, sans-serif;
+  --font-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --wrap:1200px; --gutter:clamp(16px,4vw,40px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1B2B; --surface:#14253A; --surface-2:#1A2D44; --ink:#EEF0F2; --muted:#A9B2BD; --line:#2C405A; --copper-text:#D9955F; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1B2B; --surface:#14253A; --surface-2:#1A2D44; --ink:#EEF0F2; --muted:#A9B2BD; --line:#2C405A; --copper-text:#D9955F; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--copper-text)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--copper-light);outline-offset:3px}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05;letter-spacing:-.01em;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter)}
+.eyebrow{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-text);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:4px;font:600 16px/1 var(--font-body);text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .25s var(--ease),background-color .25s,color .25s,border-color .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-copper{background:var(--copper);color:var(--navy)}
+.btn-copper:hover{background:var(--copper-light)}
+.btn-line{border-color:currentColor;color:inherit;background:transparent}
+
+/* Header */
+.top{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background-color .3s,box-shadow .3s;color:var(--on-dark)}
+.top.scrolled{background:rgba(19,37,59,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.08)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
+.logo{display:block;width:150px;color:var(--on-dark)}
+.logo svg{display:block;width:100%;height:auto}
+.lock{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--on-dark);min-width:0}
+.lock .desc{font-family:var(--font-mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;line-height:1.45;color:var(--copper-light);padding-left:16px;border-left:1px solid rgba(255,255,255,.22);white-space:nowrap}
+@media (max-width:420px){.lock{gap:12px}.lock .logo{width:118px}.lock .desc{font-size:9px;letter-spacing:.08em;padding-left:12px}}
+@media (max-width:340px){.lock .desc{display:none}}
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{white-space:nowrap;color:var(--on-dark-muted);text-decoration:none;font-size:15px;padding:10px 12px;border-radius:4px;transition:color .2s}
+.nav a:hover{color:var(--on-dark)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:14px;margin-left:8px}
+.menu-btn{display:none;background:none;border:1px solid rgba(255,255,255,.3);color:var(--on-dark);border-radius:4px;width:44px;height:44px;cursor:pointer}
+@media (max-width:1180px){
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+  .nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--navy);padding:12px var(--gutter) 24px;gap:2px;display:none}
+  .nav.open{display:flex}
+  .nav a{padding:14px 0;font-size:17px}
+  .nav .btn{margin:12px 0 0}
+}
+
+/* Hero */
+.hero{background:var(--navy);color:var(--on-dark);position:relative;overflow:hidden;padding-block:clamp(120px,16vw,170px) clamp(56px,8vw,96px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(32px,5vw,72px);align-items:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr)}.map{max-width:420px}}
+.hero-grid>*{min-width:0}
+.hero .eyebrow{color:var(--copper-light)}
+.hero h1{font-size:clamp(34px,4.9vw,68px);font-weight:800;letter-spacing:-.025em;margin-top:22px}
+.hero h1 .cut{color:var(--copper-light)}
+.hero-lead{margin-top:26px;max-width:560px;font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:var(--on-dark-muted)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.hero-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.hero-meta div{display:flex;flex-direction:column;gap:4px}
+.hero-meta b{font-family:var(--font-display);font-size:clamp(20px,2.2vw,28px);white-space:nowrap;font-weight:700;color:var(--on-dark);font-variant-numeric:tabular-nums}
+.hero-meta span{font-size:13px;color:var(--on-dark-muted);line-height:1.4}
+@media (max-width:520px){.hero-meta{grid-template-columns:1fr 1fr}.hero-meta div:last-child{grid-column:1/-1}}
+.map{position:relative;aspect-ratio:1;max-width:100%;width:100%}
+.map svg{width:100%;height:100%;display:block}
+.map .p{fill:var(--navy-2);stroke:var(--navy);stroke-width:6;transition:fill .9s var(--ease)}
+.map .p.on{fill:var(--copper)}
+.map .p.near{fill:var(--navy-3)}
+.map-tag{position:absolute;left:0;bottom:-34px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--on-dark-muted);display:flex;gap:10px;align-items:center}
+.map-tag i{width:10px;height:10px;background:var(--copper);display:inline-block}
+
+/* Sections */
+section{scroll-margin-top:84px}
+.sec{padding-block:clamp(72px,10vw,128px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+@media (max-width:800px){.sec-head{grid-template-columns:minmax(0,1fr)}}
+.sec-head h2{font-size:clamp(30px,4.2vw,54px);margin-top:16px}
+.sec-head p{color:var(--muted);max-width:520px}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--line);border:1px solid var(--line)}
+@media (max-width:800px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:16px;min-width:0;position:relative;overflow:hidden}
+.step-n{font-family:var(--font-mono);font-size:13px;color:var(--copper-text);letter-spacing:.08em}
+.step h3{font-size:26px}
+.step p{color:var(--muted);font-size:16px}
+.step::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--copper);transition:width .7s var(--ease)}
+.step:hover::after{width:100%}
+
+.flow{margin-top:clamp(40px,6vw,64px);background:var(--navy);color:var(--on-dark);border-radius:4px;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:32px;align-items:center}
+@media (max-width:900px){.flow{grid-template-columns:minmax(0,1fr)}}
+.flow h3{font-size:clamp(24px,2.6vw,32px)}
+.flow p{color:var(--on-dark-muted);margin-top:12px;font-size:16px}
+.flow-diagram{display:grid;grid-template-columns:auto minmax(48px,1fr) auto;align-items:center;gap:12px;font-size:14px}
+.node{border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:14px 16px;text-align:center;font-weight:500;background:rgba(255,255,255,.03)}
+.node.hl{border-color:var(--copper-light);color:var(--on-dark)}
+.wire{height:2px;background:linear-gradient(90deg,var(--copper-light) 50%,transparent 50%) 0 0/16px 2px repeat-x;animation:flow 1s linear infinite;position:relative}
+.wire span{position:absolute;left:50%;top:-26px;transform:translateX(-50%);white-space:nowrap;font-family:var(--font-mono);font-size:11px;color:var(--copper-light)}
+@keyframes flow{to{background-position:16px 0}}
+.flow-note{grid-column:1/-1;font-family:var(--font-mono);font-size:12px;color:var(--on-dark-muted);text-align:center;margin-top:6px}
+
+/* Audiences */
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:900px){.split{grid-template-columns:minmax(0,1fr)}}
+.aud{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(28px,3.4vw,48px);display:flex;flex-direction:column;gap:22px;min-width:0}
+.aud.dark{background:var(--navy);border-color:var(--navy);color:var(--on-dark)}
+.aud.dark .eyebrow{color:var(--copper-light)}
+.aud h3{font-size:clamp(28px,3vw,38px)}
+.aud ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.aud li{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:16px;line-height:1.5}
+.aud li svg{margin-top:3px}
+.aud .muted{color:var(--muted);font-size:15px}
+.aud.dark .muted{color:var(--on-dark-muted)}
+.seats{display:flex;flex-direction:column;gap:10px;padding:18px;border:1px solid rgba(255,255,255,.14);border-radius:4px}
+.seats-bar{display:grid;grid-template-columns:repeat(30,1fr);gap:3px}
+.seats-bar i{height:8px;background:rgba(201,133,82,.55)}
+.seats small{font-family:var(--font-mono);font-size:12px;color:var(--on-dark-muted)}
+.price{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+@media (max-width:520px){.price{grid-template-columns:1fr}}
+.price div{background:var(--surface-2);padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.price span{font-size:13px;color:var(--muted)}
+.price b{font-family:var(--font-body);font-weight:600;font-size:18px;white-space:nowrap}
+.aud .btn{align-self:flex-start;margin-top:auto}
+.aud .btn-navy{background:var(--navy);color:var(--on-dark)}
+:root[data-theme="dark"] .aud .btn-navy{background:var(--copper);color:var(--navy)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .aud .btn-navy{background:var(--copper);color:var(--navy)}}
+
+/* Backing */
+.back{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:24px}
+@media (max-width:900px){.back{grid-template-columns:1fr}}
+.back div{border-top:2px solid var(--ink);padding-top:20px;display:flex;flex-direction:column;gap:10px}
+.back h3{font-size:22px}
+.back p{color:var(--muted);font-size:16px}
+
+
+/* Name */
+.name{padding-block:clamp(72px,10vw,128px);border-bottom:1px solid var(--line)}
+.name-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 64px;align-items:end}
+@media (max-width:800px){.name-grid{grid-template-columns:minmax(0,1fr)}}
+.name .eq{grid-column:1/-1;margin-top:clamp(24px,4vw,48px)}
+.name h2{font-size:clamp(34px,4.6vw,60px);margin-top:16px}
+.name h2 .cut{color:var(--copper-text)}
+.name-lead{color:var(--muted);max-width:520px;font-size:clamp(17px,1.5vw,19px)}
+.name-lead em{font-style:italic;color:var(--ink)}
+.eq{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.3fr) auto minmax(0,1.3fr);align-items:stretch;gap:0;border:1px solid var(--line);border-radius:4px;background:var(--surface);overflow:hidden}
+.eq-t{display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding:clamp(20px,2.4vw,32px);min-width:0}
+.eq-t b{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,3vw,42px);line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.eq-t span{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.4}
+.eq-t.res{background:var(--navy);color:var(--on-dark)}
+.eq-t.res b{color:var(--copper-light)}
+.eq-t.res span{color:var(--on-dark-muted)}
+:root[data-theme="dark"] .eq-t.res{background:var(--copper);color:var(--navy)}:root[data-theme="dark"] .eq-t.res b,:root[data-theme="dark"] .eq-t.res span{color:var(--navy)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .eq-t.res{background:var(--copper)}:root:not([data-theme="light"]) .eq-t.res b,:root:not([data-theme="light"]) .eq-t.res span{color:var(--navy)}}
+.eq-o{display:flex;align-items:center;justify-content:center;padding:0 4px;font-family:var(--font-display);font-size:clamp(22px,2.4vw,30px);color:var(--copper-text);border-inline:1px solid var(--line);min-width:44px}
+@media (max-width:900px){
+  .eq{grid-template-columns:minmax(0,1fr)}
+  .eq-o{border-inline:0;border-block:1px solid var(--line);padding:6px 0;min-width:0}
+  .eq-t{flex-direction:row;align-items:baseline;justify-content:space-between;gap:16px}
+}
+.js .eq .rv.pre{transform:translateY(12px)}
+
+/* FAQ */
+.faq{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:880px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-family:var(--font-display);font-size:clamp(19px,2vw,23px);font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .plus{flex:none;width:28px;height:28px;border:1px solid var(--line);border-radius:4px;position:relative;transition:transform .3s var(--ease),background-color .3s}
+.faq summary .plus::before,.faq summary .plus::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%)}
+.faq summary .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] .plus{transform:rotate(45deg);background:var(--surface-2)}
+.faq details p{padding:0 0 24px;color:var(--muted);max-width:68ch}
+
+/* Contact */
+.contact{background:var(--navy);color:var(--on-dark)}
+.contact .eyebrow{color:var(--copper-light)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,80px)}
+@media (max-width:900px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
+.contact h2{font-size:clamp(32px,4.2vw,54px);margin-top:16px}
+.contact-lead{color:var(--on-dark-muted);margin-top:20px;max-width:440px}
+.addr{margin-top:36px;display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--on-dark-muted)}
+.addr b{color:var(--on-dark);font-weight:500}
+form{display:flex;flex-direction:column;gap:18px}
+.role{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.role input{position:absolute;opacity:0;pointer-events:none}
+.role label{display:flex;flex-direction:column;gap:2px;padding:16px;border:1px solid rgba(255,255,255,.22);border-radius:4px;cursor:pointer;transition:border-color .2s,background-color .2s}
+.role label b{font-weight:600}
+.role label span{font-size:13px;color:var(--on-dark-muted)}
+.role input:checked+label{border-color:var(--copper-light);background:rgba(201,133,82,.1)}
+.role input:focus-visible+label{outline:2px solid var(--copper-light);outline-offset:2px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:600px){.fields,.role{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:8px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-muted)}
+.f input,.f textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.35);color:var(--on-dark);font:inherit;font-size:17px;padding:10px 0;border-radius:0;transition:border-color .2s}
+.f input:focus,.f textarea:focus{outline:none;border-bottom-color:var(--copper-light)}
+.f textarea{resize:vertical;min-height:96px}
+.consent{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:14px;color:var(--on-dark-muted);line-height:1.5}
+.consent input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--copper)}
+.consent a{color:var(--copper-light)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-msg{font-size:15px;padding:14px 16px;border-radius:4px;border:1px solid var(--copper-light)}
+.form-msg.err{border-color:#E8A0A0}
+
+/* Footer */
+footer{background:#0B1724;color:var(--on-dark-muted);padding-block:48px;font-size:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px}
+.foot .logo{width:120px}
+.legal{margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;line-height:1.6;max-width:900px}
+footer a{color:var(--on-dark-muted)}
+
+/* Motion */
+.rv{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .rv.pre{opacity:0;transform:translateY(24px)}
+.hero .ld{animation:up .9s var(--ease) both}
+.hero .ld:nth-child(2){animation-delay:.08s}.hero .ld:nth-child(3){animation-delay:.16s}.hero .ld:nth-child(4){animation-delay:.24s}.hero .ld:nth-child(5){animation-delay:.32s}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv.pre{opacity:1;transform:none}
+}
+@media (max-width:520px){.flow-diagram{grid-template-columns:minmax(0,1fr)}.wire{height:40px;width:2px;justify-self:center;background:linear-gradient(180deg,var(--copper-light) 50%,transparent 50%) 0 0/2px 16px repeat-y;animation:flowv 1s linear infinite}.wire span{top:50%;left:14px;transform:translateY(-50%)}}
+@keyframes flowv{to{background-position:0 16px}}
+</style>
+
+
+</head>
+<body>
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="lock" href="#" aria-label="Terrava — inwestycje w ziemię i nieruchomości, strona główna"><span class="logo"><svg viewBox="0 0 514 107" role="img" aria-label="Terrava"><rect x="20.15" y="20.15" width="65" height="20.15" fill="#C98552"/><rect x="20.15" y="46.15" width="29.57" height="39" fill="#C98552"/><rect x="55.58" y="46.15" width="29.57" height="39" fill="#C98552"/><path transform="translate(109.95 85.15) scale(0.1)" fill="currentColor" d="M25 -497H153V-633H283V-497H411V-396H283V0H153V-396H25ZM930 -165H1056Q1048 -114 1013.5 -74.0Q979 -34 920.0 -11.0Q861 12 776 12Q681 12 608.0 -18.5Q535 -49 494.0 -107.0Q453 -165 453 -247Q453 -329 493.0 -387.5Q533 -446 604.5 -477.0Q676 -508 772 -508Q870 -508 935.0 -477.0Q1000 -446 1031.5 -383.5Q1063 -321 1058 -224H584Q589 -186 612.5 -155.0Q636 -124 676.5 -106.0Q717 -88 773 -88Q835 -88 876.5 -109.5Q918 -131 930 -165ZM766 -409Q694 -409 649.0 -377.5Q604 -346 591 -300H929Q924 -350 881.5 -379.5Q839 -409 766 -409ZM1145 -497H1275V-347Q1282 -370 1296.0 -397.5Q1310 -425 1333.0 -450.5Q1356 -476 1389.0 -492.0Q1422 -508 1466 -508V-390Q1410 -390 1369.0 -368.5Q1328 -347 1303 -316Q1285 -294 1275 -273V0H1145ZM1536 -497H1666V-347Q1673 -370 1687.0 -397.5Q1701 -425 1724.0 -450.5Q1747 -476 1780.0 -492.0Q1813 -508 1857 -508V-390Q1801 -390 1760.0 -368.5Q1719 -347 1694 -316Q1676 -294 1666 -273V0H1536ZM2169 11Q2095 11 2034.5 -21.5Q1974 -54 1938.5 -112.5Q1903 -171 1903 -248Q1903 -327 1939.0 -385.0Q1975 -443 2036.5 -475.5Q2098 -508 2176 -508Q2262 -508 2314.5 -473.5Q2367 -439 2391 -380Q2397 -364 2402 -348V-497H2532V0H2411L2409 -20Q2406 -39 2404.0 -69.0Q2402 -99 2402 -128V-162Q2402 -160 2401 -159Q2387 -113 2358.0 -74.5Q2329 -36 2282.0 -12.5Q2235 11 2169 11ZM2211 -89Q2270 -89 2313.0 -109.0Q2356 -129 2379.0 -165.0Q2402 -201 2402 -248Q2402 -299 2378.5 -334.5Q2355 -370 2312.5 -388.5Q2270 -407 2211 -407Q2128 -407 2082.0 -363.5Q2036 -320 2036 -248Q2036 -200 2058.0 -164.5Q2080 -129 2119.5 -109.0Q2159 -89 2211 -89ZM2891 -139 3049 -497H3191L2952 0H2829L2595 -497H2738ZM3476 11Q3402 11 3341.5 -21.5Q3281 -54 3245.5 -112.5Q3210 -171 3210 -248Q3210 -327 3246.0 -385.0Q3282 -443 3343.5 -475.5Q3405 -508 3483 -508Q3569 -508 3621.5 -473.5Q3674 -439 3698 -380Q3704 -364 3709 -348V-497H3839V0H3718L3716 -20Q3713 -39 3711.0 -69.0Q3709 -99 3709 -128V-162Q3709 -160 3708 -159Q3694 -113 3665.0 -74.5Q3636 -36 3589.0 -12.5Q3542 11 3476 11ZM3518 -89Q3577 -89 3620.0 -109.0Q3663 -129 3686.0 -165.0Q3709 -201 3709 -248Q3709 -299 3685.5 -334.5Q3662 -370 3619.5 -388.5Q3577 -407 3518 -407Q3435 -407 3389.0 -363.5Q3343 -320 3343 -248Q3343 -200 3365.0 -164.5Q3387 -129 3426.5 -109.0Q3466 -89 3518 -89Z"/></svg></span><span class="desc" aria-hidden="true">Inwestycje w ziemię<br>i nieruchomości</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Główna">
+      <a href="#jak-dziala">Jak działa klub</a>
+      <a href="#inwestorzy">Dla inwestorów</a>
+      <a href="#projekty">Dla właścicieli projektów</a>
+      <a href="#faq">Pytania</a>
+      <a class="btn btn-copper" href="panel/login.php">Strefa członka</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow ld">Klub inwestorów z całej Polski</p>
+        <h1 id="h1" class="ld">Grunt to dobra <span class="cut">inwestycja.</span></h1>
+        <p class="hero-lead ld">Terrava to zamknięty klub zamożnych inwestorów z całej Polski. Wybieramy grunty i projekty deweloperskie w całym kraju, sprawdzamy je i pokazujemy tylko członkom.</p>
+        <div class="hero-cta ld">
+          <a class="btn btn-copper" href="#kontakt" data-role="inwestor">Poproś o zaproszenie
+            <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 6h14M9 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+          <a class="btn btn-line" href="#kontakt" data-role="projekt">Zgłoś projekt</a>
+        </div>
+        <div class="hero-meta ld">
+          <div><b>149</b><span>maksymalna liczba członków klubu</span></div>
+          <div><b>48 h</b><span>na wstępną ocenę zgłoszonego projektu</span></div>
+          <div><b>MPZP · WZ</b><span>tylko grunty z jasnym statusem planistycznym</span></div>
+        </div>
+      </div>
+      <div class="map ld" aria-hidden="true">
+        <svg id="map" viewBox="0 0 480 480"></svg>
+        <p class="map-tag"><i></i> Wybrane działki · podział ewidencyjny</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="sec" id="jak-dziala" aria-labelledby="h-how">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div><p class="eyebrow">Jak działa klub</p><h2 id="h-how">Selekcja, prezentacja, Twoja decyzja.</h2></div>
+        <p>Do klubu trafia niewielka część zgłoszonych projektów. Każdy przechodzi analizę prawną, techniczną i finansową, zanim zobaczą go członkowie.</p>
+      </div>
+      <div class="steps">
+        <article class="step rv">
+          <span class="step-n">KROK 1</span>
+          <h3>Selekcja</h3>
+          <p>Wyszukujemy grunty i projekty, sprawdzamy księgi wieczyste, plan miejscowy, budżet i dewelopera. Decyzję podejmuje komitet selekcji.</p>
+        </article>
+        <article class="step rv">
+          <span class="step-n">KROK 2</span>
+          <h3>Prezentacja</h3>
+          <p>Członkowie dostają profil projektu, analizę i pokój danych na zamkniętej platformie, a także zaproszenie na spotkanie i wizytę na miejscu.</p>
+        </article>
+        <article class="step rv">
+          <span class="step-n">KROK 3</span>
+          <h3>Decyzja</h3>
+          <p>Jeśli projekt Cię interesuje, rozmawiasz bezpośrednio ze spółką projektową i z nią podpisujesz umowę. Raporty kwartalne widzisz na platformie.</p>
+        </article>
+      </div>
+      <div class="flow rv">
+        <div>
+          <h3>Twoje pieniądze nie przechodzą przez Terravę.</h3>
+          <p>Kapitał trafia bezpośrednio na rachunek spółki realizującej projekt albo do depozytu notarialnego. Terrava weryfikuje i informuje, nie pośredniczy w płatnościach.</p>
+        </div>
+        <div class="flow-diagram">
+          <div class="node">Członek klubu</div>
+          <div class="wire"><span>wpłata bezpośrednio</span></div>
+          <div class="node hl">Spółka projektowa</div>
+          <p class="flow-note">Terrava: weryfikacja, analiza, prezentacja</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0" aria-label="Dla kogo">
+    <div class="wrap split">
+      <article class="aud dark rv" id="inwestorzy">
+        <p class="eyebrow">Dla inwestorów</p>
+        <h3>Dostęp do okazji, których nie ma na rynku.</h3>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Projekty i grunty po pełnej weryfikacji, z analizą ryzyk</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Pokój danych z dokumentami źródłowymi</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Spotkania z deweloperami i wizyty na budowach; prezentacje także online</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Kwartalne raporty z realizacji projektów</li>
+        </ul>
+        <div class="seats">
+          <div class="seats-bar" id="seats" aria-hidden="true"></div>
+          <small>Klub liczy najwyżej 149 członków. Dołączenie wymaga imiennego zaproszenia.</small>
+        </div>
+        <a class="btn btn-copper" href="#kontakt" data-role="inwestor">Poproś o zaproszenie</a>
+      </article>
+      <article class="aud rv" id="projekty">
+        <p class="eyebrow">Dla właścicieli projektów</p>
+        <h3>Przedstaw projekt inwestorom, którzy szukają takich okazji.</h3>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper)" stroke-width="2"/></svg>Projekty w spółce celowej z MPZP lub decyzją WZ</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper)" stroke-width="2"/></svg>Umowy z inwestorami zawiera Twoja spółka, na własnych warunkach</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper)" stroke-width="2"/></svg>Stała opłata, bez prowizji od zebranego kapitału</li>
+        </ul>
+        <div class="price">
+          <div><span>Pakiet</span><b>Weryfikacja</b></div>
+          <div><span>Pakiet</span><b>Prezentacja</b></div>
+          <div><span>Pakiet</span><b>Premium</b></div>
+        </div>
+        <p class="muted">Wstępna ocena projektu jest bezpłatna, odpowiadamy w ciągu 48 godzin. Szczegóły pakietów i cennik przekazujemy po wstępnej ocenie.</p>
+        <a class="btn btn-navy" href="#kontakt" data-role="projekt">Zgłoś projekt</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--surface-2)" aria-labelledby="h-back">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div><p class="eyebrow">Zaplecze</p><h2 id="h-back">Selekcja to nasza praca, nie dodatek.</h2></div>
+        <p>Zespół Terravy ma doświadczenie w zakupie gruntów i prowadzeniu inwestycji. Członkowie i projekty klubu pochodzą z całej Polski.</p>
+      </div>
+      <div class="back">
+        <div class="rv"><h3>Praktyka deweloperska</h3><p>Oceniamy projekty oczami osób, które same kupowały grunty i prowadziły budowy: plan, budżet, harmonogram, sprzedaż.</p></div>
+        <div class="rv"><h3>Partnerzy w całej Polsce</h3><p>Rzeczoznawcy, kancelarie i lokalni doradcy pomagają nam sprawdzać projekty tam, gdzie powstają.</p></div>
+        <div class="rv"><h3>Komitet selekcji</h3><p>Decyzje o dopuszczeniu projektu z udziałem niezależnego członka, zapisane z uzasadnieniem.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="name" id="nazwa" aria-labelledby="h-name">
+    <div class="wrap name-grid">
+      <div class="rv">
+        <p class="eyebrow">Skąd nazwa</p>
+        <h2 id="h-name">Wartość zaczyna się <span class="cut">od ziemi.</span></h2>
+      </div>
+      <div class="rv">
+        <p class="name-lead">Terrava łączy łacińskie <em>terra</em>, czyli ziemię, z ideą wartości. Wierzymy, że dobrze wybrany grunt jest fundamentem każdej inwestycji, dlatego każdą analizę zaczynamy od działki: jej planu, księgi wieczystej i otoczenia.</p>
+      </div>
+      <div class="eq" role="img" aria-label="terra, czyli ziemia, plus wartość, równa się Terrava">
+        <div class="eq-t rv"><b>terra</b><span>łac. ziemia</span></div>
+        <div class="eq-o rv" style="transition-delay:.1s" aria-hidden="true">+</div>
+        <div class="eq-t rv" style="transition-delay:.2s"><b>wartość</b><span>to, czego szukamy</span></div>
+        <div class="eq-o rv" style="transition-delay:.3s" aria-hidden="true">=</div>
+        <div class="eq-t res rv" style="transition-delay:.4s"><b>terrava</b><span>grunt to dobra inwestycja</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq" aria-labelledby="h-faq">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div><p class="eyebrow">Pytania</p><h2 id="h-faq">Krótko o zasadach.</h2></div>
+        <p>Nie znalazłeś odpowiedzi? Napisz do nas przez formularz poniżej.</p>
+      </div>
+      <div class="faq">
+        <details class="rv"><summary>Czy Terrava przyjmuje pieniądze inwestorów?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Inwestor wpłaca środki bezpośrednio spółce projektowej albo do depozytu notarialnego. Terrava nie jest stroną umowy inwestycyjnej.</p></details>
+        <details class="rv"><summary>Czy Terrava jest funduszem inwestycyjnym?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Terrava to klub członkowski: wyszukuje i weryfikuje projekty oraz udostępnia członkom informacje. Nie zarządza kapitałem ani nie doradza inwestycyjnie.</p></details>
+        <details class="rv"><summary>Kto może zostać członkiem?<span class="plus" aria-hidden="true"></span></summary><p>Osoby i firmy z doświadczeniem inwestycyjnym, zaproszone imiennie po rozmowie z opiekunem klubu. Klub liczy najwyżej 149 członków.</p></details>
+        <details class="rv"><summary>Dlaczego nie widać projektów na stronie?<span class="plus" aria-hidden="true"></span></summary><p>Projekty prezentujemy wyłącznie zalogowanym członkom. Strona publiczna nie zawiera ofert inwestycyjnych.</p></details>
+        <details class="rv"><summary>Jakie projekty przyjmujecie do weryfikacji?<span class="plus" aria-hidden="true"></span></summary><p>Projekty deweloperskie i grunty z całej Polski, realizowane w spółce celowej, z MPZP lub decyzją WZ i wkładem własnym dewelopera.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="kontakt" aria-labelledby="h-contact">
+    <div class="wrap contact-grid">
+      <div class="rv">
+        <p class="eyebrow">Kontakt</p>
+        <h2 id="h-contact">Porozmawiajmy.</h2>
+        <p class="contact-lead">Napisz, czy chcesz dołączyć do klubu, czy przedstawić projekt. Odpowiemy w ciągu dwóch dni roboczych.</p>
+        <div class="addr">
+          <b>Terrava</b>
+          <span>[ulica i numer], [kod] Poznań</span>
+          <span>[adres e-mail]</span>
+          <span>[telefon]</span>
+        </div>
+      </div>
+      <form id="form" class="rv" action="kontakt.php" method="post" novalidate>
+        <fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+          <legend class="sr" style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-muted);margin-bottom:10px">Piszę jako</legend>
+          <div class="role">
+            <input type="radio" id="r-inw" name="rola" value="inwestor" checked><label for="r-inw"><b>Inwestor</b><span>Chcę dołączyć do klubu</span></label>
+            <input type="radio" id="r-pro" name="rola" value="projekt"><label for="r-pro"><b>Właściciel projektu</b><span>Chcę przedstawić projekt</span></label>
+          </div>
+        </fieldset>
+        <div class="fields">
+          <div class="f"><label for="f-imie">Imię i nazwisko</label><input id="f-imie" name="imie" autocomplete="name" required></div>
+          <div class="f"><label for="f-firma">Firma (opcjonalnie)</label><input id="f-firma" name="firma" autocomplete="organization"></div>
+          <div class="f"><label for="f-mail">E-mail</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+          <div class="f"><label for="f-tel">Telefon</label><input id="f-tel" name="telefon" type="tel" autocomplete="tel"></div>
+          <div class="f full"><label for="f-msg" id="f-msg-l">Kilka słów o sobie</label><textarea id="f-msg" name="wiadomosc" rows="4"></textarea></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="f-www">Strona</label><input id="f-www" name="www" tabindex="-1" autocomplete="off"></div>
+        <label class="consent" for="f-zgoda"><input type="checkbox" id="f-zgoda" name="zgoda" value="tak" required><span>Wyrażam zgodę na przetwarzanie moich danych w celu odpowiedzi na wiadomość. Zasady opisuje <a href="polityka-prywatnosci.html">polityka prywatności</a>.</span></label>
+        <div id="form-msg" class="form-msg" role="status" hidden></div>
+        <button class="btn btn-copper" type="submit" style="align-self:flex-start">Wyślij wiadomość
+          <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 6h14M9 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span class="logo"><svg viewBox="0 0 514 107" role="img" aria-label="Terrava"><rect x="20.15" y="20.15" width="65" height="20.15" fill="#C98552"/><rect x="20.15" y="46.15" width="29.57" height="39" fill="#C98552"/><rect x="55.58" y="46.15" width="29.57" height="39" fill="#C98552"/><path transform="translate(109.95 85.15) scale(0.1)" fill="currentColor" d="M25 -497H153V-633H283V-497H411V-396H283V0H153V-396H25ZM930 -165H1056Q1048 -114 1013.5 -74.0Q979 -34 920.0 -11.0Q861 12 776 12Q681 12 608.0 -18.5Q535 -49 494.0 -107.0Q453 -165 453 -247Q453 -329 493.0 -387.5Q533 -446 604.5 -477.0Q676 -508 772 -508Q870 -508 935.0 -477.0Q1000 -446 1031.5 -383.5Q1063 -321 1058 -224H584Q589 -186 612.5 -155.0Q636 -124 676.5 -106.0Q717 -88 773 -88Q835 -88 876.5 -109.5Q918 -131 930 -165ZM766 -409Q694 -409 649.0 -377.5Q604 -346 591 -300H929Q924 -350 881.5 -379.5Q839 -409 766 -409ZM1145 -497H1275V-347Q1282 -370 1296.0 -397.5Q1310 -425 1333.0 -450.5Q1356 -476 1389.0 -492.0Q1422 -508 1466 -508V-390Q1410 -390 1369.0 -368.5Q1328 -347 1303 -316Q1285 -294 1275 -273V0H1145ZM1536 -497H1666V-347Q1673 -370 1687.0 -397.5Q1701 -425 1724.0 -450.5Q1747 -476 1780.0 -492.0Q1813 -508 1857 -508V-390Q1801 -390 1760.0 -368.5Q1719 -347 1694 -316Q1676 -294 1666 -273V0H1536ZM2169 11Q2095 11 2034.5 -21.5Q1974 -54 1938.5 -112.5Q1903 -171 1903 -248Q1903 -327 1939.0 -385.0Q1975 -443 2036.5 -475.5Q2098 -508 2176 -508Q2262 -508 2314.5 -473.5Q2367 -439 2391 -380Q2397 -364 2402 -348V-497H2532V0H2411L2409 -20Q2406 -39 2404.0 -69.0Q2402 -99 2402 -128V-162Q2402 -160 2401 -159Q2387 -113 2358.0 -74.5Q2329 -36 2282.0 -12.5Q2235 11 2169 11ZM2211 -89Q2270 -89 2313.0 -109.0Q2356 -129 2379.0 -165.0Q2402 -201 2402 -248Q2402 -299 2378.5 -334.5Q2355 -370 2312.5 -388.5Q2270 -407 2211 -407Q2128 -407 2082.0 -363.5Q2036 -320 2036 -248Q2036 -200 2058.0 -164.5Q2080 -129 2119.5 -109.0Q2159 -89 2211 -89ZM2891 -139 3049 -497H3191L2952 0H2829L2595 -497H2738ZM3476 11Q3402 11 3341.5 -21.5Q3281 -54 3245.5 -112.5Q3210 -171 3210 -248Q3210 -327 3246.0 -385.0Q3282 -443 3343.5 -475.5Q3405 -508 3483 -508Q3569 -508 3621.5 -473.5Q3674 -439 3698 -380Q3704 -364 3709 -348V-497H3839V0H3718L3716 -20Q3713 -39 3711.0 -69.0Q3709 -99 3709 -128V-162Q3709 -160 3708 -159Q3694 -113 3665.0 -74.5Q3636 -36 3589.0 -12.5Q3542 11 3476 11ZM3518 -89Q3577 -89 3620.0 -109.0Q3663 -129 3686.0 -165.0Q3709 -201 3709 -248Q3709 -299 3685.5 -334.5Q3662 -370 3619.5 -388.5Q3577 -407 3518 -407Q3435 -407 3389.0 -363.5Q3343 -320 3343 -248Q3343 -200 3365.0 -164.5Q3387 -129 3426.5 -109.0Q3466 -89 3518 -89Z"/></svg></span>
+      <div style="display:flex;flex-wrap:wrap;gap:24px">
+        <a href="#jak-dziala">Jak działa klub</a><a href="#inwestorzy">Dla inwestorów</a><a href="#projekty">Dla właścicieli projektów</a><a href="polityka-prywatnosci.html">Polityka prywatności</a>
+      </div>
+    </div>
+    <p class="legal">Terrava [forma prawna] z siedzibą w Poznaniu, [adres], KRS [numer], NIP [numer]. Informacje na stronie nie stanowią oferty publicznej, oferty w rozumieniu Kodeksu cywilnego ani rekomendacji inwestycyjnej. Terrava nie przyjmuje środków inwestorów i nie jest stroną umów inwestycyjnych. Inwestycje w nieruchomości wiążą się z ryzykiem utraty części lub całości kapitału. © <span id="yr">2026</span> Terrava</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Header on scroll + mobile menu
+  var top = document.getElementById('top');
+  function onScroll(){ top.classList.toggle('scrolled', window.scrollY > 24); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var mb = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  mb.addEventListener('click', function(){ var o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+  nav.addEventListener('click', function(e){ if(e.target.tagName === 'A'){ nav.classList.remove('open'); mb.setAttribute('aria-expanded','false'); } });
+
+  // Cadastral map: parcels as rectangles on a 480 grid
+  var P = [[0,0,150,96],[150,0,120,96],[270,0,210,60],[270,60,110,90],[380,60,100,150],[0,96,90,130],[90,96,180,70],[90,166,95,110],[185,166,85,110],[270,150,110,60],[270,210,210,80],[0,226,90,120],[90,276,180,70],[270,290,120,90],[390,290,90,190],[0,346,140,134],[140,346,130,64],[140,410,130,70],[270,380,120,100]];
+  var svg = document.getElementById('map'), els = [];
+  P.forEach(function(r){
+    var el = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    el.setAttribute('x',r[0]); el.setAttribute('y',r[1]); el.setAttribute('width',r[2]); el.setAttribute('height',r[3]);
+    el.setAttribute('class','p'); svg.appendChild(el); els.push(el);
+  });
+  // T-cut motif over the highlighted parcel
+  var picks = [8,3,13,6,16], i = 0;
+  function pick(){
+    els.forEach(function(e){ e.classList.remove('on','near'); });
+    var k = picks[i % picks.length]; els[k].classList.add('on');
+    els[(k+1)%els.length].classList.add('near'); els[(k+5)%els.length].classList.add('near');
+    i++;
+  }
+  pick();
+  if(!reduce) setInterval(pick, 2600);
+
+  // 149 seats, one cell each
+  var seats = document.getElementById('seats');
+  for(var s=0;s<149;s++){ seats.appendChild(document.createElement('i')); }
+
+  // Reveal on scroll (visible at rest without JS observers)
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.remove('pre'); io.unobserve(e.target);} }); }, {rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.top > window.innerHeight){ el.classList.add('pre'); io.observe(el); }
+    });
+    window.addEventListener('scroll', function once(){ setTimeout(function(){ document.querySelectorAll('.rv.pre').forEach(function(el){ var r=el.getBoundingClientRect(); if(r.top < window.innerHeight*1.2){ el.classList.remove('pre'); } }); }, 900); }, {passive:true});
+    setTimeout(function(){ document.querySelectorAll('.rv.pre').forEach(function(el){ el.classList.remove('pre'); }); }, 4000);
+  }
+
+  // Role preselect from CTA buttons
+  var msgL = document.getElementById('f-msg-l');
+  function setRole(v){
+    var el = document.getElementById(v === 'projekt' ? 'r-pro' : 'r-inw'); if(el){ el.checked = true; }
+    msgL.textContent = v === 'projekt' ? 'Projekt: lokalizacja, rodzaj, kapitał' : 'Kilka słów o sobie';
+  }
+  document.querySelectorAll('[data-role]').forEach(function(a){ a.addEventListener('click', function(){ setRole(a.getAttribute('data-role')); }); });
+  document.querySelectorAll('input[name="rola"]').forEach(function(r){ r.addEventListener('change', function(){ setRole(r.value); }); });
+
+  // Form submit to kontakt.php
+  var form = document.getElementById('form'), out = document.getElementById('form-msg');
+  function show(t, err){ out.textContent = t; out.className = 'form-msg' + (err ? ' err' : ''); out.hidden = false; }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.imie.value.trim(), mail = form.email.value.trim();
+    if(!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){ show('Podaj imię i nazwisko oraz poprawny adres e-mail.', true); return; }
+    if(!form.zgoda.checked){ show('Zaznacz zgodę na przetwarzanie danych, abyśmy mogli odpowiedzieć.', true); return; }
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+    fetch(form.getAttribute('action'), {method:'POST', body:new FormData(form)})
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.ok){ form.reset(); setRole('inwestor'); show('Dziękujemy. Wiadomość dotarła, odpowiemy w ciągu dwóch dni roboczych.'); } else { throw 0; } })
+      .catch(function(){ show('Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz bezpośrednio na adres podany obok.', true); })
+      .then(function(){ btn.disabled = false; });
+  });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

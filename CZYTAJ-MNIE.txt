@@ -1,0 +1,37 @@
+TERRAVA.PL — STRONA, PANEL CZŁONKA I CRM
+
+STRUKTURA
+  index.html, polityka-prywatnosci.html, kontakt.php, logo.svg, favicon.svg   strona publiczna
+  panel/                                                                      panel członka, właściciela projektu i CRM zespołu
+
+WYMAGANIA
+  Hosting z PHP 8.0+ (rozszerzenia pdo_mysql, mbstring), baza MySQL 5.7+ lub MariaDB 10.3+, certyfikat SSL (https).
+
+INSTALACJA
+  1. Wgraj całą zawartość folderu do katalogu domeny (zwykle public_html).
+  2. W panelu hostingu utwórz bazę MySQL i użytkownika z pełnymi uprawnieniami do tej bazy.
+  3. Skopiuj panel/config.sample.php jako panel/config.php i wpisz dane bazy oraz adresy e-mail.
+  4. Ustaw prawa zapisu dla katalogu panel/storage (755 lub 775 — zależnie od hostingu).
+  5. Otwórz https://terrava.pl/panel/install.php, utwórz konto administratora.
+  6. USUŃ plik panel/install.php z serwera.
+  7. W kontakt.php ustaw adresy $DO i $OD. Zgłoszenia z formularza trafiają też automatycznie do CRM.
+  8. W index.html uzupełnij pola w nawiasach kwadratowych (adres, e-mail, telefon, KRS, NIP).
+
+ROLE
+  Administrator       pełny dostęp, zarządza kontami zespołu
+  Opiekun klubu       inwestorzy, członkowie, składki, zainteresowania projektami
+  Analityk projektów  projekty, dokumenty, publikacja projektów dla członków
+  Członek klubu       widzi opublikowane projekty, pokój danych, zgłasza zainteresowanie
+  Właściciel projektu widzi etap weryfikacji i status dokumentów swojego projektu
+
+JAK TO DZIAŁA
+  - Limit 149 miejsc: etapy „Zaproszony” i „Członek” zajmują miejsce; CRM blokuje kolejne zaproszenia po wyczerpaniu limitu.
+  - Konto członka tworzy opiekun w karcie inwestora (etap „Członek”). Hasło tymczasowe pokazuje się raz;
+    przekaż je osobiście lub telefonicznie. Przy pierwszym logowaniu trzeba ustawić własne hasło.
+  - Projekt widzą członkowie dopiero po zaznaczeniu „Opublikowany” na etapie „Prezentacja” lub „W realizacji”.
+  - Dokumenty pokoju danych są przechowywane w panel/storage (bez dostępu z internetu) i pobierane tylko
+    przez zalogowanych; każde pobranie jest zapisywane.
+
+BEZPIECZEŃSTWO
+  Hasła są szyfrowane (bcrypt), formularze chronione tokenem CSRF, logowanie blokowane po 8 nieudanych próbach na 15 minut,
+  sesja wygasa po 2 godzinach bezczynności. Rób regularne kopie zapasowe bazy i katalogu panel/storage.
