@@ -43,7 +43,7 @@ $flash = $_SESSION['flash'] ?? []; unset($_SESSION['flash']);
     <a class="brand" href="../"><?= logo_svg() ?></a>
     <div style="display:flex;flex-direction:column;gap:16px;max-width:460px">
       <p class="eyebrow" style="color:var(--copper-light)">Klub Terrava</p>
-      <h1>Sprawdzone grunty i projekty. Tylko dla członków.</h1>
+      <h1>Wyselekcjonowane grunty i projekty. Tylko dla członków.</h1>
       <p style="color:#B9C0C9">Profile projektów, analizy i pokój danych widzą wyłącznie zaproszeni członkowie.</p>
     </div>
     <div class="stripes"><i></i><i></i></div>

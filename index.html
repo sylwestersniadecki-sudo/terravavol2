@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Terrava — klub inwestorów w grunty i nieruchomości</title>
-<meta name="description" content="Terrava to zamknięty klub zamożnych inwestorów z całej Polski. Weryfikujemy grunty i projekty deweloperskie i prezentujemy je tylko członkom.">
-<meta property="og:title" content="Terrava — klub inwestorów">
-<meta property="og:description" content="Grunt to dobra inwestycja. Zamknięty klub inwestorów w grunty i projekty deweloperskie.">
+<title>Terrava | Zamknięta społeczność inwestorów w grunty i nieruchomości</title>
+<meta name="description" content="Terrava to zamknięta społeczność zamożnych inwestorów z całej Polski. Wyszukujemy i analizujemy grunty oraz projekty deweloperskie i prezentujemy je tylko członkom.">
+<meta property="og:title" content="Terrava | Zamknięta społeczność inwestorów">
+<meta property="og:description" content="Grunt to dobra inwestycja. Zamknięta społeczność inwestorów w grunty i projekty deweloperskie.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://terrava.pl/">
 <meta name="theme-color" content="#13253B">
@@ -43,7 +43,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05;letter
 p{margin:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter)}
 .eyebrow{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-text);display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+.eyebrow::before{content:"";width:7px;height:7px;background:currentColor;flex:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:4px;font:600 16px/1 var(--font-body);text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .25s var(--ease),background-color .25s,color .25s,border-color .25s}
 .btn:hover{transform:translateY(-2px)}
 .btn svg{transition:transform .25s var(--ease)}
@@ -79,6 +79,7 @@ p{margin:0}
 .hero{background:var(--navy);color:var(--on-dark);position:relative;overflow:hidden;padding-block:clamp(120px,16vw,170px) clamp(56px,8vw,96px)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(32px,5vw,72px);align-items:center}
 @media (max-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr)}.map{max-width:420px}}
+@media (max-width:600px){.map{display:none}}
 .hero-grid>*{min-width:0}
 .hero .eyebrow{color:var(--copper-light)}
 .hero h1{font-size:clamp(34px,4.9vw,68px);font-weight:800;letter-spacing:-.025em;margin-top:22px}
@@ -105,6 +106,7 @@ section{scroll-margin-top:84px}
 @media (max-width:800px){.sec-head{grid-template-columns:minmax(0,1fr)}}
 .sec-head h2{font-size:clamp(30px,4.2vw,54px);margin-top:16px}
 .sec-head p{color:var(--muted);max-width:520px}
+.sec-head .eyebrow{color:var(--copper-text);max-width:none}
 
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--line);border:1px solid var(--line)}
 @media (max-width:800px){.steps{grid-template-columns:1fr}}
@@ -148,10 +150,26 @@ section{scroll-margin-top:84px}
 .price div{background:var(--surface-2);padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
 .price span{font-size:13px;color:var(--muted)}
 .price b{font-family:var(--font-body);font-weight:600;font-size:18px;white-space:nowrap}
+.ow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;counter-reset:o}
+@media (max-width:520px){.ow{grid-template-columns:minmax(0,1fr)}}
+.ow li{background:var(--surface-2);padding:14px 16px;display:flex;flex-direction:column;gap:2px;counter-increment:o;min-width:0}
+.ow li::before{content:"0" counter(o);font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:var(--copper-text)}
+.ow b{font-size:15px;font-weight:600}
+.ow span{font-size:13.5px;color:var(--muted);line-height:1.45}
 .aud .btn{align-self:flex-start;margin-top:auto}
 .aud .btn-navy{background:var(--navy);color:var(--on-dark)}
 :root[data-theme="dark"] .aud .btn-navy{background:var(--copper);color:var(--navy)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .aud .btn-navy{background:var(--copper);color:var(--navy)}}
+
+/* Land */
+.land{padding-top:0}
+.land-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:800px){.land-grid{grid-template-columns:minmax(0,1fr)}}
+.land-card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--copper);border-radius:4px;padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.land-card h3{font-size:clamp(24px,2.4vw,30px)}
+.land-card p{color:var(--muted);font-size:16px}
+.land-card small{margin-top:auto;padding-top:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--copper-text)}
+.land-note{margin-top:24px;font-size:14px;color:var(--muted);max-width:720px}
 
 /* Backing */
 .back{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:24px}
@@ -188,6 +206,20 @@ section{scroll-margin-top:84px}
 .js .eq .rv.pre{transform:translateY(12px)}
 
 /* FAQ */
+.faq-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:clamp(32px,5vw,72px);align-items:start}
+@media (max-width:960px){.faq-layout{grid-template-columns:minmax(0,1fr)}}
+.faq-groups{display:flex;flex-direction:column;gap:clamp(40px,5vw,56px);min-width:0}
+.faq .faq,.faq-groups .faq{max-width:none}
+.pledge{position:sticky;top:104px;background:var(--navy);border:1px solid rgba(255,255,255,.08);color:var(--on-dark);border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:20px}
+.pledge h3{font-size:24px}
+.pledge ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;counter-reset:p}
+.pledge li{display:grid;grid-template-columns:28px 1fr;gap:12px;font-size:15.5px;line-height:1.5;color:var(--on-dark-muted);counter-increment:p}
+.pledge li::before{content:counter(p);font-family:var(--font-mono);font-size:12px;color:var(--navy);background:var(--copper-light);width:24px;height:24px;display:grid;place-items:center;border-radius:2px;margin-top:1px}
+.pledge li b{color:var(--on-dark);font-weight:600;display:block}
+.pledge .btn{align-self:flex-start;min-height:46px;padding:0 20px;font-size:15px}
+@media (max-width:960px){.pledge{position:static}}
+.faq-g{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-text);margin-bottom:8px}
+
 .faq{display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:880px}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-family:var(--font-display);font-size:clamp(19px,2vw,23px);font-weight:600}
@@ -257,14 +289,15 @@ footer a{color:var(--on-dark-muted)}
 <body>
 <header class="top" id="top">
   <div class="wrap top-in">
-    <a class="lock" href="#" aria-label="Terrava — inwestycje w ziemię i nieruchomości, strona główna"><span class="logo"><svg viewBox="0 0 514 107" role="img" aria-label="Terrava"><rect x="20.15" y="20.15" width="65" height="20.15" fill="#C98552"/><rect x="20.15" y="46.15" width="29.57" height="39" fill="#C98552"/><rect x="55.58" y="46.15" width="29.57" height="39" fill="#C98552"/><path transform="translate(109.95 85.15) scale(0.1)" fill="currentColor" d="M25 -497H153V-633H283V-497H411V-396H283V0H153V-396H25ZM930 -165H1056Q1048 -114 1013.5 -74.0Q979 -34 920.0 -11.0Q861 12 776 12Q681 12 608.0 -18.5Q535 -49 494.0 -107.0Q453 -165 453 -247Q453 -329 493.0 -387.5Q533 -446 604.5 -477.0Q676 -508 772 -508Q870 -508 935.0 -477.0Q1000 -446 1031.5 -383.5Q1063 -321 1058 -224H584Q589 -186 612.5 -155.0Q636 -124 676.5 -106.0Q717 -88 773 -88Q835 -88 876.5 -109.5Q918 -131 930 -165ZM766 -409Q694 -409 649.0 -377.5Q604 -346 591 -300H929Q924 -350 881.5 -379.5Q839 -409 766 -409ZM1145 -497H1275V-347Q1282 -370 1296.0 -397.5Q1310 -425 1333.0 -450.5Q1356 -476 1389.0 -492.0Q1422 -508 1466 -508V-390Q1410 -390 1369.0 -368.5Q1328 -347 1303 -316Q1285 -294 1275 -273V0H1145ZM1536 -497H1666V-347Q1673 -370 1687.0 -397.5Q1701 -425 1724.0 -450.5Q1747 -476 1780.0 -492.0Q1813 -508 1857 -508V-390Q1801 -390 1760.0 -368.5Q1719 -347 1694 -316Q1676 -294 1666 -273V0H1536ZM2169 11Q2095 11 2034.5 -21.5Q1974 -54 1938.5 -112.5Q1903 -171 1903 -248Q1903 -327 1939.0 -385.0Q1975 -443 2036.5 -475.5Q2098 -508 2176 -508Q2262 -508 2314.5 -473.5Q2367 -439 2391 -380Q2397 -364 2402 -348V-497H2532V0H2411L2409 -20Q2406 -39 2404.0 -69.0Q2402 -99 2402 -128V-162Q2402 -160 2401 -159Q2387 -113 2358.0 -74.5Q2329 -36 2282.0 -12.5Q2235 11 2169 11ZM2211 -89Q2270 -89 2313.0 -109.0Q2356 -129 2379.0 -165.0Q2402 -201 2402 -248Q2402 -299 2378.5 -334.5Q2355 -370 2312.5 -388.5Q2270 -407 2211 -407Q2128 -407 2082.0 -363.5Q2036 -320 2036 -248Q2036 -200 2058.0 -164.5Q2080 -129 2119.5 -109.0Q2159 -89 2211 -89ZM2891 -139 3049 -497H3191L2952 0H2829L2595 -497H2738ZM3476 11Q3402 11 3341.5 -21.5Q3281 -54 3245.5 -112.5Q3210 -171 3210 -248Q3210 -327 3246.0 -385.0Q3282 -443 3343.5 -475.5Q3405 -508 3483 -508Q3569 -508 3621.5 -473.5Q3674 -439 3698 -380Q3704 -364 3709 -348V-497H3839V0H3718L3716 -20Q3713 -39 3711.0 -69.0Q3709 -99 3709 -128V-162Q3709 -160 3708 -159Q3694 -113 3665.0 -74.5Q3636 -36 3589.0 -12.5Q3542 11 3476 11ZM3518 -89Q3577 -89 3620.0 -109.0Q3663 -129 3686.0 -165.0Q3709 -201 3709 -248Q3709 -299 3685.5 -334.5Q3662 -370 3619.5 -388.5Q3577 -407 3518 -407Q3435 -407 3389.0 -363.5Q3343 -320 3343 -248Q3343 -200 3365.0 -164.5Q3387 -129 3426.5 -109.0Q3466 -89 3518 -89Z"/></svg></span><span class="desc" aria-hidden="true">Inwestycje w ziemię<br>i nieruchomości</span></a>
+    <a class="lock" href="#" aria-label="Terrava, inwestycje w ziemię i nieruchomości, strona główna"><span class="logo"><svg viewBox="0 0 514 107" role="img" aria-label="Terrava"><rect x="20.15" y="20.15" width="65" height="20.15" fill="#C98552"/><rect x="20.15" y="46.15" width="29.57" height="39" fill="#C98552"/><rect x="55.58" y="46.15" width="29.57" height="39" fill="#C98552"/><path transform="translate(109.95 85.15) scale(0.1)" fill="currentColor" d="M25 -497H153V-633H283V-497H411V-396H283V0H153V-396H25ZM930 -165H1056Q1048 -114 1013.5 -74.0Q979 -34 920.0 -11.0Q861 12 776 12Q681 12 608.0 -18.5Q535 -49 494.0 -107.0Q453 -165 453 -247Q453 -329 493.0 -387.5Q533 -446 604.5 -477.0Q676 -508 772 -508Q870 -508 935.0 -477.0Q1000 -446 1031.5 -383.5Q1063 -321 1058 -224H584Q589 -186 612.5 -155.0Q636 -124 676.5 -106.0Q717 -88 773 -88Q835 -88 876.5 -109.5Q918 -131 930 -165ZM766 -409Q694 -409 649.0 -377.5Q604 -346 591 -300H929Q924 -350 881.5 -379.5Q839 -409 766 -409ZM1145 -497H1275V-347Q1282 -370 1296.0 -397.5Q1310 -425 1333.0 -450.5Q1356 -476 1389.0 -492.0Q1422 -508 1466 -508V-390Q1410 -390 1369.0 -368.5Q1328 -347 1303 -316Q1285 -294 1275 -273V0H1145ZM1536 -497H1666V-347Q1673 -370 1687.0 -397.5Q1701 -425 1724.0 -450.5Q1747 -476 1780.0 -492.0Q1813 -508 1857 -508V-390Q1801 -390 1760.0 -368.5Q1719 -347 1694 -316Q1676 -294 1666 -273V0H1536ZM2169 11Q2095 11 2034.5 -21.5Q1974 -54 1938.5 -112.5Q1903 -171 1903 -248Q1903 -327 1939.0 -385.0Q1975 -443 2036.5 -475.5Q2098 -508 2176 -508Q2262 -508 2314.5 -473.5Q2367 -439 2391 -380Q2397 -364 2402 -348V-497H2532V0H2411L2409 -20Q2406 -39 2404.0 -69.0Q2402 -99 2402 -128V-162Q2402 -160 2401 -159Q2387 -113 2358.0 -74.5Q2329 -36 2282.0 -12.5Q2235 11 2169 11ZM2211 -89Q2270 -89 2313.0 -109.0Q2356 -129 2379.0 -165.0Q2402 -201 2402 -248Q2402 -299 2378.5 -334.5Q2355 -370 2312.5 -388.5Q2270 -407 2211 -407Q2128 -407 2082.0 -363.5Q2036 -320 2036 -248Q2036 -200 2058.0 -164.5Q2080 -129 2119.5 -109.0Q2159 -89 2211 -89ZM2891 -139 3049 -497H3191L2952 0H2829L2595 -497H2738ZM3476 11Q3402 11 3341.5 -21.5Q3281 -54 3245.5 -112.5Q3210 -171 3210 -248Q3210 -327 3246.0 -385.0Q3282 -443 3343.5 -475.5Q3405 -508 3483 -508Q3569 -508 3621.5 -473.5Q3674 -439 3698 -380Q3704 -364 3709 -348V-497H3839V0H3718L3716 -20Q3713 -39 3711.0 -69.0Q3709 -99 3709 -128V-162Q3709 -160 3708 -159Q3694 -113 3665.0 -74.5Q3636 -36 3589.0 -12.5Q3542 11 3476 11ZM3518 -89Q3577 -89 3620.0 -109.0Q3663 -129 3686.0 -165.0Q3709 -201 3709 -248Q3709 -299 3685.5 -334.5Q3662 -370 3619.5 -388.5Q3577 -407 3518 -407Q3435 -407 3389.0 -363.5Q3343 -320 3343 -248Q3343 -200 3365.0 -164.5Q3387 -129 3426.5 -109.0Q3466 -89 3518 -89Z"/></svg></span><span class="desc" aria-hidden="true">Inwestycje w ziemię<br>i nieruchomości</span></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Menu">
       <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="2"/></svg>
     </button>
     <nav class="nav" id="nav" aria-label="Główna">
-      <a href="#jak-dziala">Jak działa klub</a>
-      <a href="#inwestorzy">Dla inwestorów</a>
-      <a href="#projekty">Dla właścicieli projektów</a>
+      <a href="#jak-dziala">Jak działa</a>
+      <a href="#inwestorzy">Inwestorzy</a>
+      <a href="#grunty">Grunty</a>
+      <a href="#projekty">Właściciele projektów</a>
       <a href="#faq">Pytania</a>
       <a class="btn btn-copper" href="panel/login.php">Strefa członka</a>
     </nav>
@@ -275,18 +308,18 @@ footer a{color:var(--on-dark-muted)}
   <section class="hero" aria-labelledby="h1">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow ld">Klub inwestorów z całej Polski</p>
+        <p class="eyebrow ld">Zamknięta społeczność inwestorów</p>
         <h1 id="h1" class="ld">Grunt to dobra <span class="cut">inwestycja.</span></h1>
-        <p class="hero-lead ld">Terrava to zamknięty klub zamożnych inwestorów z całej Polski. Wybieramy grunty i projekty deweloperskie w całym kraju, sprawdzamy je i pokazujemy tylko członkom.</p>
+        <p class="hero-lead ld">Terrava to zamknięta społeczność zamożnych inwestorów z całej Polski. Wyszukujemy grunty i projekty deweloperskie w całym kraju, analizujemy je i pokazujemy tylko członkom.</p>
         <div class="hero-cta ld">
           <a class="btn btn-copper" href="#kontakt" data-role="inwestor">Poproś o zaproszenie
             <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 6h14M9 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
           <a class="btn btn-line" href="#kontakt" data-role="projekt">Zgłoś projekt</a>
         </div>
         <div class="hero-meta ld">
-          <div><b>149</b><span>maksymalna liczba członków klubu</span></div>
-          <div><b>48 h</b><span>na wstępną ocenę zgłoszonego projektu</span></div>
-          <div><b>MPZP · WZ</b><span>tylko grunty z jasnym statusem planistycznym</span></div>
+          <div><b>Cała Polska</b><span>grunty i projekty z całego kraju</span></div>
+          <div><b>Zero</b><span>środków inwestorów przechodzi przez Terravę</span></div>
+          <div><b>14 dni</b><span>wyłączności dla członków na grunty off market</span></div>
         </div>
       </div>
       <div class="map ld" aria-hidden="true">
@@ -302,13 +335,13 @@ footer a{color:var(--on-dark-muted)}
     <div class="wrap">
       <div class="sec-head rv">
         <div><p class="eyebrow">Jak działa klub</p><h2 id="h-how">Selekcja, prezentacja, Twoja decyzja.</h2></div>
-        <p>Do klubu trafia niewielka część zgłoszonych projektów. Każdy przechodzi analizę prawną, techniczną i finansową, zanim zobaczą go członkowie.</p>
+        <p>Do klubu trafia niewielka część zgłoszonych projektów. Każdy analizujemy pod kątem prawnym, technicznym i finansowym, zanim zobaczą go członkowie. Analiza pomaga podjąć decyzję, ale jej nie zastępuje.</p>
       </div>
       <div class="steps">
         <article class="step rv">
           <span class="step-n">KROK 1</span>
           <h3>Selekcja</h3>
-          <p>Wyszukujemy grunty i projekty, sprawdzamy księgi wieczyste, plan miejscowy, budżet i dewelopera. Decyzję podejmuje komitet selekcji.</p>
+          <p>Wyszukujemy grunty i projekty, analizujemy dokumenty: księgi wieczyste, status planistyczny, budżet i doświadczenie dewelopera. O prezentacji w klubie decyduje komitet selekcji.</p>
         </article>
         <article class="step rv">
           <span class="step-n">KROK 2</span>
@@ -318,19 +351,19 @@ footer a{color:var(--on-dark-muted)}
         <article class="step rv">
           <span class="step-n">KROK 3</span>
           <h3>Decyzja</h3>
-          <p>Jeśli projekt Cię interesuje, rozmawiasz bezpośrednio ze spółką projektową i z nią podpisujesz umowę. Raporty kwartalne widzisz na platformie.</p>
+          <p>Decyzja należy wyłącznie do Ciebie. Jeśli projekt Cię interesuje, rozmawiasz bezpośrednio ze spółką projektową i z nią podpisujesz umowę. Raporty kwartalne widzisz na platformie.</p>
         </article>
       </div>
       <div class="flow rv">
         <div>
           <h3>Twoje pieniądze nie przechodzą przez Terravę.</h3>
-          <p>Kapitał trafia bezpośrednio na rachunek spółki realizującej projekt albo do depozytu notarialnego. Terrava weryfikuje i informuje, nie pośredniczy w płatnościach.</p>
+          <p>Kapitał trafia bezpośrednio na rachunek spółki realizującej projekt albo do depozytu notarialnego. Terrava analizuje i informuje, nie pośredniczy w płatnościach.</p>
         </div>
         <div class="flow-diagram">
           <div class="node">Członek klubu</div>
           <div class="wire"><span>wpłata bezpośrednio</span></div>
           <div class="node hl">Spółka projektowa</div>
-          <p class="flow-note">Terrava: weryfikacja, analiza, prezentacja</p>
+          <p class="flow-note">Terrava: selekcja, analiza, prezentacja</p>
         </div>
       </div>
     </div>
@@ -342,10 +375,12 @@ footer a{color:var(--on-dark-muted)}
         <p class="eyebrow">Dla inwestorów</p>
         <h3>Dostęp do okazji, których nie ma na rynku.</h3>
         <ul>
-          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Projekty i grunty po pełnej weryfikacji, z analizą ryzyk</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Projekty i grunty po selekcji, z analizą i opisem ryzyk</li>
           <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Pokój danych z dokumentami źródłowymi</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Grunty off market z 14-dniową wyłącznością dla członków</li>
           <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Spotkania z deweloperami i wizyty na budowach; prezentacje także online</li>
           <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Kwartalne raporty z realizacji projektów</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper-light)" stroke-width="2"/></svg>Seminaria klubowe z prawnikiem, doradcą podatkowym i rzeczoznawcą oraz baza wiedzy na platformie</li>
         </ul>
         <div class="seats">
           <div class="seats-bar" id="seats" aria-hidden="true"></div>
@@ -357,18 +392,43 @@ footer a{color:var(--on-dark-muted)}
         <p class="eyebrow">Dla właścicieli projektów</p>
         <h3>Przedstaw projekt inwestorom, którzy szukają takich okazji.</h3>
         <ul>
-          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper)" stroke-width="2"/></svg>Projekty w spółce celowej z MPZP lub decyzją WZ</li>
+          <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper)" stroke-width="2"/></svg>Projekty deweloperskie i grunty z całej Polski</li>
           <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper)" stroke-width="2"/></svg>Umowy z inwestorami zawiera Twoja spółka, na własnych warunkach</li>
           <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5" fill="none" stroke="var(--copper)" stroke-width="2"/></svg>Stała opłata, bez prowizji od zebranego kapitału</li>
         </ul>
-        <div class="price">
-          <div><span>Pakiet</span><b>Weryfikacja</b></div>
-          <div><span>Pakiet</span><b>Prezentacja</b></div>
-          <div><span>Pakiet</span><b>Premium</b></div>
-        </div>
-        <p class="muted">Wstępna ocena projektu jest bezpłatna, odpowiadamy w ciągu 48 godzin. Szczegóły pakietów i cennik przekazujemy po wstępnej ocenie.</p>
+        <ol class="ow">
+          <li><b>Rozmowa i zgłoszenie</b><span>Poznajemy projekt i zespół.</span></li>
+          <li><b>Analiza i komitet selekcji</b><span>Dokumenty, budżet, harmonogram.</span></li>
+          <li><b>Prezentacja członkom</b><span>Profil projektu i pokój danych na platformie.</span></li>
+          <li><b>Rozmowy z inwestorami</b><span>Bezpośrednio, bez naszego udziału w płatnościach.</span></li>
+        </ol>
+        <p class="muted">Pierwsza rozmowa i ocena zgłoszenia są bezpłatne. Warunki współpracy przedstawiamy po zapoznaniu się z projektem.</p>
         <a class="btn btn-navy" href="#kontakt" data-role="projekt">Zgłoś projekt</a>
       </article>
+    </div>
+  </section>
+
+  <section class="sec land" id="grunty" aria-labelledby="h-land">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div><p class="eyebrow">Terrava Ziemia</p><h2 id="h-land">Grunty, których nie ma na portalach.</h2></div>
+        <p>Członkowie jako pierwsi widzą oferty gruntów spoza rynku. Możesz też zlecić nam znalezienie działki według własnych kryteriów.</p>
+      </div>
+      <div class="land-grid">
+        <article class="land-card rv">
+          <span class="step-n">OFF MARKET</span>
+          <h3>Oferty spoza rynku</h3>
+          <p>Działki od właścicieli i lokalnych partnerów, pokazywane najpierw członkom, z 14-dniową wyłącznością. Przy każdej: lokalizacja, powierzchnia, status planistyczny i cena.</p>
+          <small>Prowizję płaci sprzedający.</small>
+        </article>
+        <article class="land-card rv">
+          <span class="step-n">NA ZLECENIE</span>
+          <h3>Grunt szyty na miarę</h3>
+          <p>Szukamy działki według Twoich kryteriów: lokalizacja, powierzchnia, przeznaczenie, budżet. Negocjujemy warunki, które ułatwiają zakup, na przykład odroczony termin płatności lub umowę warunkową.</p>
+          <small>Wynagrodzenie płatne od sukcesu.</small>
+        </article>
+      </div>
+      <p class="land-note rv">Umowę kupna zawierasz bezpośrednio ze sprzedającym, aktem notarialnym. Terrava nie przyjmuje pieniędzy na zakup gruntu i nie udziela finansowania.</p>
     </div>
   </section>
 
@@ -380,7 +440,7 @@ footer a{color:var(--on-dark-muted)}
       </div>
       <div class="back">
         <div class="rv"><h3>Praktyka deweloperska</h3><p>Oceniamy projekty oczami osób, które same kupowały grunty i prowadziły budowy: plan, budżet, harmonogram, sprzedaż.</p></div>
-        <div class="rv"><h3>Partnerzy w całej Polsce</h3><p>Rzeczoznawcy, kancelarie i lokalni doradcy pomagają nam sprawdzać projekty tam, gdzie powstają.</p></div>
+        <div class="rv"><h3>Partnerzy w całej Polsce</h3><p>Rzeczoznawcy, kancelarie i lokalni doradcy pomagają nam analizować projekty tam, gdzie powstają.</p></div>
         <div class="rv"><h3>Komitet selekcji</h3><p>Decyzje o dopuszczeniu projektu z udziałem niezależnego członka, zapisane z uzasadnieniem.</p></div>
       </div>
     </div>
@@ -408,15 +468,44 @@ footer a{color:var(--on-dark-muted)}
   <section class="sec" id="faq" aria-labelledby="h-faq">
     <div class="wrap">
       <div class="sec-head rv">
-        <div><p class="eyebrow">Pytania</p><h2 id="h-faq">Krótko o zasadach.</h2></div>
-        <p>Nie znalazłeś odpowiedzi? Napisz do nas przez formularz poniżej.</p>
+        <div><p class="eyebrow">Pytania</p><h2 id="h-faq">Jasne zasady, także w trudnych sprawach.</h2></div>
+        <p>Mówimy wprost, za co odpowiadamy, a za co nie. Jeśli nie znajdziesz tu odpowiedzi, napisz do nas przez formularz poniżej.</p>
       </div>
-      <div class="faq">
-        <details class="rv"><summary>Czy Terrava przyjmuje pieniądze inwestorów?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Inwestor wpłaca środki bezpośrednio spółce projektowej albo do depozytu notarialnego. Terrava nie jest stroną umowy inwestycyjnej.</p></details>
-        <details class="rv"><summary>Czy Terrava jest funduszem inwestycyjnym?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Terrava to klub członkowski: wyszukuje i weryfikuje projekty oraz udostępnia członkom informacje. Nie zarządza kapitałem ani nie doradza inwestycyjnie.</p></details>
-        <details class="rv"><summary>Kto może zostać członkiem?<span class="plus" aria-hidden="true"></span></summary><p>Osoby i firmy z doświadczeniem inwestycyjnym, zaproszone imiennie po rozmowie z opiekunem klubu. Klub liczy najwyżej 149 członków.</p></details>
-        <details class="rv"><summary>Dlaczego nie widać projektów na stronie?<span class="plus" aria-hidden="true"></span></summary><p>Projekty prezentujemy wyłącznie zalogowanym członkom. Strona publiczna nie zawiera ofert inwestycyjnych.</p></details>
-        <details class="rv"><summary>Jakie projekty przyjmujecie do weryfikacji?<span class="plus" aria-hidden="true"></span></summary><p>Projekty deweloperskie i grunty z całej Polski, realizowane w spółce celowej, z MPZP lub decyzją WZ i wkładem własnym dewelopera.</p></details>
+      <div class="faq-layout">
+        <div class="faq-groups">
+        <div class="faq-grp"><h3 class="faq-g rv">Pieniądze i umowy</h3>
+        <div class="faq">
+            <details class="rv"><summary>Czy Terrava przyjmuje pieniądze inwestorów?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Terrava nie przyjmuje, nie przechowuje i nie przekazuje środków inwestorów. Wpłacasz je bezpośrednio na rachunek spółki projektowej albo do depozytu notarialnego, na podstawie umowy zawartej z tą spółką.</p></details>
+            <details class="rv"><summary>Z kim podpisuję umowę?<span class="plus" aria-hidden="true"></span></summary><p>Ze spółką realizującą projekt, a przy wspólnym zakupie gruntu ze sprzedającym, aktem notarialnym. Terrava nie jest stroną umowy. Warunki, zabezpieczenia i harmonogram określa umowa; przed podpisaniem zalecamy konsultację z własnym prawnikiem i doradcą podatkowym.</p></details>
+            <details class="rv"><summary>Jak zabezpieczone są inwestycje?<span class="plus" aria-hidden="true"></span></summary><p>Zabezpieczenia, na przykład hipotekę, zastaw na udziałach albo współwłasność gruntu, ustala umowa ze spółką projektową. W profilu projektu opisujemy proponowane zabezpieczenia, aby można było je ocenić. Zabezpieczenie ogranicza ryzyko, ale go nie usuwa.</p></details>
+            <details class="rv"><summary>Co się dzieje po zainwestowaniu?<span class="plus" aria-hidden="true"></span></summary><p>Spółka projektowa przekazuje raporty kwartalne, które publikujemy członkom na platformie. Prawa informacyjne i kontrolne inwestora wynikają z umowy ze spółką.</p></details>
+        </div></div>
+        <div class="faq-grp"><h3 class="faq-g rv">Ryzyko i odpowiedzialność</h3>
+        <div class="faq">
+            <details class="rv"><summary>Czy Terrava gwarantuje zysk albo powodzenie projektu?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Za realizację projektu odpowiada spółka projektowa i jej zarząd. Każda inwestycja w nieruchomości wiąże się z ryzykiem, w tym opóźnień, przekroczenia budżetu oraz utraty części lub całości kapitału. Prognozy w profilach to szacunki właściciela projektu, podane z datą sporządzenia.</p></details>
+            <details class="rv"><summary>Co znaczy, że projekt przeszedł selekcję?<span class="plus" aria-hidden="true"></span></summary><p>Że przeanalizowaliśmy dokumenty i informacje przekazane przez właściciela projektu, a komitet selekcji uznał, że warto pokazać projekt członkom. Nie jest to audyt ani badanie due diligence wykonane na rzecz inwestora i nie gwarantuje kompletności ani prawdziwości danych. Zakres analizy opisujemy w każdym profilu.</p></details>
+            <details class="rv"><summary>Czy mogę samodzielnie zbadać projekt?<span class="plus" aria-hidden="true"></span></summary><p>Tak, i zachęcamy do tego. W pokoju danych są dokumenty źródłowe. Możesz zadawać pytania właścicielowi projektu, obejrzeć teren i zlecić własne badanie prawne, techniczne lub finansowe przed podjęciem decyzji.</p></details>
+            <details class="rv"><summary>Czy Terrava doradza, w co zainwestować?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Terrava nie świadczy doradztwa inwestycyjnego i nie rekomenduje inwestycji konkretnym osobom. Udostępniamy informacje o projektach; decyzję, czy i ile zainwestować, podejmujesz samodzielnie.</p></details>
+            <details class="rv"><summary>Kto płaci Terravie i czy to nie rodzi konfliktu interesów?<span class="plus" aria-hidden="true"></span></summary><p>Członkowie płacą składkę, a właściciele projektów stałą opłatę za analizę i prezentację, niezależną od tego, ile zbiorą. Nie pobieramy prowizji od zebranego kapitału. Przy gruntach off market prowizję płaci sprzedający, a przy wyszukiwaniu na zlecenie członek, który zleca; jeśli płacą obie strony, obie wiedzą o tym na piśmie. Powiązania zespołu Terravy z projektem lub gruntem ujawniamy w ofercie.</p></details>
+        </div></div>
+        <div class="faq-grp"><h3 class="faq-g rv">Klub</h3>
+        <div class="faq">
+            <details class="rv"><summary>Czy Terrava jest funduszem inwestycyjnym?<span class="plus" aria-hidden="true"></span></summary><p>Nie. Terrava to zamknięta społeczność inwestorów działająca na zasadzie klubu członkowskiego: wyszukuje projekty, analizuje je i udostępnia członkom informacje. Nie zarządza kapitałem i nie przyjmuje zapisów na inwestycje.</p></details>
+            <details class="rv"><summary>Kto może zostać członkiem?<span class="plus" aria-hidden="true"></span></summary><p>Osoby i firmy z doświadczeniem inwestycyjnym, zaproszone imiennie po rozmowie z opiekunem klubu. Klub liczy najwyżej 149 członków.</p></details>
+            <details class="rv"><summary>Dlaczego nie widać projektów na stronie?<span class="plus" aria-hidden="true"></span></summary><p>Projekty prezentujemy wyłącznie zalogowanym członkom, po podpisaniu umowy poufności. Strona publiczna nie zawiera ofert inwestycyjnych.</p></details>
+            <details class="rv"><summary>Czy mogę zlecić znalezienie gruntu?<span class="plus" aria-hidden="true"></span></summary><p>Tak, jako członek klubu. Określasz kryteria, a my szukamy działki i negocjujemy warunki ze sprzedającym. Wynagrodzenie płacisz od sukcesu, a umowę kupna podpisujesz bezpośrednio ze sprzedającym.</p></details>
+          <details class="rv"><summary>Jakie projekty przyjmujecie do analizy?<span class="plus" aria-hidden="true"></span></summary><p>Projekty deweloperskie z całej Polski, realizowane w spółce celowej, z wkładem własnym dewelopera. Grunty przyjmujemy osobno, jako oferty off market.</p></details>
+        </div></div>
+      </div>
+        <aside class="pledge rv" aria-labelledby="h-pledge">
+          <h3 id="h-pledge">Trzy zasady, których się trzymamy</h3>
+          <ol>
+            <li><span><b>Nie przyjmujemy pieniędzy inwestorów.</b>Płacisz spółce projektowej albo sprzedającemu grunt.</span></li>
+            <li><span><b>Nie gwarantujemy zysku.</b>Za realizację projektu odpowiada spółka projektowa, a ryzyko opisujemy wprost.</span></li>
+            <li><span><b>Decyzja należy do Ciebie.</b>Analiza pomaga, ale jej nie zastępuje. Zachęcamy do własnego badania.</span></li>
+          </ol>
+          <a class="btn btn-copper" href="#kontakt">Zadaj pytanie</a>
+        </aside>
       </div>
     </div>
   </section>
@@ -426,7 +515,7 @@ footer a{color:var(--on-dark-muted)}
       <div class="rv">
         <p class="eyebrow">Kontakt</p>
         <h2 id="h-contact">Porozmawiajmy.</h2>
-        <p class="contact-lead">Napisz, czy chcesz dołączyć do klubu, czy przedstawić projekt. Odpowiemy w ciągu dwóch dni roboczych.</p>
+        <p class="contact-lead">Napisz, czy chcesz dołączyć do klubu, czy przedstawić projekt albo grunt. Każdą wiadomość czyta osoba z zespołu i odpowiada osobiście.</p>
         <div class="addr">
           <b>Terrava</b>
           <span>[ulica i numer], [kod] Poznań</span>
@@ -439,7 +528,7 @@ footer a{color:var(--on-dark-muted)}
           <legend class="sr" style="font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-muted);margin-bottom:10px">Piszę jako</legend>
           <div class="role">
             <input type="radio" id="r-inw" name="rola" value="inwestor" checked><label for="r-inw"><b>Inwestor</b><span>Chcę dołączyć do klubu</span></label>
-            <input type="radio" id="r-pro" name="rola" value="projekt"><label for="r-pro"><b>Właściciel projektu</b><span>Chcę przedstawić projekt</span></label>
+            <input type="radio" id="r-pro" name="rola" value="projekt"><label for="r-pro"><b>Właściciel projektu lub gruntu</b><span>Chcę przedstawić projekt albo grunt</span></label>
           </div>
         </fieldset>
         <div class="fields">
@@ -464,10 +553,10 @@ footer a{color:var(--on-dark-muted)}
     <div class="foot">
       <span class="logo"><svg viewBox="0 0 514 107" role="img" aria-label="Terrava"><rect x="20.15" y="20.15" width="65" height="20.15" fill="#C98552"/><rect x="20.15" y="46.15" width="29.57" height="39" fill="#C98552"/><rect x="55.58" y="46.15" width="29.57" height="39" fill="#C98552"/><path transform="translate(109.95 85.15) scale(0.1)" fill="currentColor" d="M25 -497H153V-633H283V-497H411V-396H283V0H153V-396H25ZM930 -165H1056Q1048 -114 1013.5 -74.0Q979 -34 920.0 -11.0Q861 12 776 12Q681 12 608.0 -18.5Q535 -49 494.0 -107.0Q453 -165 453 -247Q453 -329 493.0 -387.5Q533 -446 604.5 -477.0Q676 -508 772 -508Q870 -508 935.0 -477.0Q1000 -446 1031.5 -383.5Q1063 -321 1058 -224H584Q589 -186 612.5 -155.0Q636 -124 676.5 -106.0Q717 -88 773 -88Q835 -88 876.5 -109.5Q918 -131 930 -165ZM766 -409Q694 -409 649.0 -377.5Q604 -346 591 -300H929Q924 -350 881.5 -379.5Q839 -409 766 -409ZM1145 -497H1275V-347Q1282 -370 1296.0 -397.5Q1310 -425 1333.0 -450.5Q1356 -476 1389.0 -492.0Q1422 -508 1466 -508V-390Q1410 -390 1369.0 -368.5Q1328 -347 1303 -316Q1285 -294 1275 -273V0H1145ZM1536 -497H1666V-347Q1673 -370 1687.0 -397.5Q1701 -425 1724.0 -450.5Q1747 -476 1780.0 -492.0Q1813 -508 1857 -508V-390Q1801 -390 1760.0 -368.5Q1719 -347 1694 -316Q1676 -294 1666 -273V0H1536ZM2169 11Q2095 11 2034.5 -21.5Q1974 -54 1938.5 -112.5Q1903 -171 1903 -248Q1903 -327 1939.0 -385.0Q1975 -443 2036.5 -475.5Q2098 -508 2176 -508Q2262 -508 2314.5 -473.5Q2367 -439 2391 -380Q2397 -364 2402 -348V-497H2532V0H2411L2409 -20Q2406 -39 2404.0 -69.0Q2402 -99 2402 -128V-162Q2402 -160 2401 -159Q2387 -113 2358.0 -74.5Q2329 -36 2282.0 -12.5Q2235 11 2169 11ZM2211 -89Q2270 -89 2313.0 -109.0Q2356 -129 2379.0 -165.0Q2402 -201 2402 -248Q2402 -299 2378.5 -334.5Q2355 -370 2312.5 -388.5Q2270 -407 2211 -407Q2128 -407 2082.0 -363.5Q2036 -320 2036 -248Q2036 -200 2058.0 -164.5Q2080 -129 2119.5 -109.0Q2159 -89 2211 -89ZM2891 -139 3049 -497H3191L2952 0H2829L2595 -497H2738ZM3476 11Q3402 11 3341.5 -21.5Q3281 -54 3245.5 -112.5Q3210 -171 3210 -248Q3210 -327 3246.0 -385.0Q3282 -443 3343.5 -475.5Q3405 -508 3483 -508Q3569 -508 3621.5 -473.5Q3674 -439 3698 -380Q3704 -364 3709 -348V-497H3839V0H3718L3716 -20Q3713 -39 3711.0 -69.0Q3709 -99 3709 -128V-162Q3709 -160 3708 -159Q3694 -113 3665.0 -74.5Q3636 -36 3589.0 -12.5Q3542 11 3476 11ZM3518 -89Q3577 -89 3620.0 -109.0Q3663 -129 3686.0 -165.0Q3709 -201 3709 -248Q3709 -299 3685.5 -334.5Q3662 -370 3619.5 -388.5Q3577 -407 3518 -407Q3435 -407 3389.0 -363.5Q3343 -320 3343 -248Q3343 -200 3365.0 -164.5Q3387 -129 3426.5 -109.0Q3466 -89 3518 -89Z"/></svg></span>
       <div style="display:flex;flex-wrap:wrap;gap:24px">
-        <a href="#jak-dziala">Jak działa klub</a><a href="#inwestorzy">Dla inwestorów</a><a href="#projekty">Dla właścicieli projektów</a><a href="polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="#jak-dziala">Jak działa</a><a href="#inwestorzy">Inwestorzy</a><a href="#grunty">Grunty</a><a href="#projekty">Właściciele projektów</a><a href="#faq">Pytania</a><a href="polityka-prywatnosci.html">Polityka prywatności</a>
       </div>
     </div>
-    <p class="legal">Terrava [forma prawna] z siedzibą w Poznaniu, [adres], KRS [numer], NIP [numer]. Informacje na stronie nie stanowią oferty publicznej, oferty w rozumieniu Kodeksu cywilnego ani rekomendacji inwestycyjnej. Terrava nie przyjmuje środków inwestorów i nie jest stroną umów inwestycyjnych. Inwestycje w nieruchomości wiążą się z ryzykiem utraty części lub całości kapitału. © <span id="yr">2026</span> Terrava</p>
+    <p class="legal">Terrava [forma prawna] z siedzibą w Poznaniu, [adres], KRS [numer], NIP [numer]. Informacje na stronie nie stanowią oferty publicznej, oferty w rozumieniu Kodeksu cywilnego ani rekomendacji inwestycyjnej. Terrava nie przyjmuje środków inwestorów i nie jest stroną umów inwestycyjnych. Analizy Terravy mają charakter informacyjny, opierają się na dokumentach przekazanych przez właścicieli projektów i nie stanowią gwarancji ich kompletności, prawdziwości ani powodzenia projektu. Za realizację projektu odpowiada spółka projektowa. Inwestycje w nieruchomości wiążą się z ryzykiem utraty części lub całości kapitału. © <span id="yr">2026</span> Terrava</p>
   </div>
 </footer>
 
@@ -522,7 +611,7 @@ footer a{color:var(--on-dark-muted)}
   var msgL = document.getElementById('f-msg-l');
   function setRole(v){
     var el = document.getElementById(v === 'projekt' ? 'r-pro' : 'r-inw'); if(el){ el.checked = true; }
-    msgL.textContent = v === 'projekt' ? 'Projekt: lokalizacja, rodzaj, kapitał' : 'Kilka słów o sobie';
+    msgL.textContent = v === 'projekt' ? 'Projekt lub grunt: lokalizacja, rodzaj, powierzchnia' : 'Kilka słów o sobie';
   }
   document.querySelectorAll('[data-role]').forEach(function(a){ a.addEventListener('click', function(){ setRole(a.getAttribute('data-role')); }); });
   document.querySelectorAll('input[name="rola"]').forEach(function(r){ r.addEventListener('change', function(){ setRole(r.value); }); });

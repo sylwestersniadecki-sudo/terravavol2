@@ -26,7 +26,7 @@ function pole($k, $max = 2000) {
     return mb_substr($v, 0, $max);
 }
 
-$rola    = pole('rola', 20) === 'projekt' ? 'Właściciel projektu' : 'Inwestor';
+$rola    = pole('rola', 20) === 'projekt' ? 'Właściciel projektu lub gruntu' : 'Inwestor';
 $imie    = pole('imie', 120);
 $firma   = pole('firma', 160);
 $email   = pole('email', 160);
